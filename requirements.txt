@@ -5,3 +5,5 @@ Flask-Migrate
 python-dotenv
 Werkzeug
 cloudflare
+gunicorn
+waitress
