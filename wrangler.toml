@@ -1,3 +1,4 @@
-me = "jsign-app"
+name = "jsign-app"
+main = "worker.py"
 compatibility_date = "2025-08-10"
-main = "app.py"  # Your main Flask app file
+compatibility_flags = ["python_workers"]
