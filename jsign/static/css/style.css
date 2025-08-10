@@ -1,0 +1,118 @@
+/* --- Global Styles & Dark Theme Variables --- */
+:root {
+    --primary-blue: #007bff;
+    --secondary-blue: #0056b3;
+    --success-green: #28a745;
+    --danger-red: #dc3545;
+    --warning-yellow: #ffc107;
+    
+    /* Dark Theme Palette */
+    --background-dark: #121212;
+    --surface-dark: #1e1e1e;
+    --primary-text: #e0e0e0;
+    --secondary-text: #a0a0a0;
+    --border-color: #333;
+
+    --font-family: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    background-color: var(--background-dark);
+    color: var(--primary-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container { flex-grow: 1; }
+button { cursor: pointer; }
+a { color: var(--primary-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* --- Navigation Bar --- */
+.top-nav {
+    background-color: var(--surface-dark);
+    border-bottom: 1px solid var(--border-color);
+    color: white;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* ... other nav styles from before remain the same ... */
+.nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+.nav-brand h1 a { color: white; text-decoration: none; font-size: 1.75rem; }
+.nav-brand svg path { fill: white; }
+.nav-links { display: flex; align-items: center; gap: 1rem; }
+.nav-links .user-info { font-weight: 500; }
+.nav-button { background-color: rgba(255,255,255,0.1); border: 1px solid var(--border-color); color: white; padding: 0.5rem 1rem; border-radius: 20px; transition: background-color 0.3s; }
+.nav-button:hover { background-color: rgba(255,255,255,0.2); }
+.nav-button.logout { background-color: var(--warning-yellow); border-color: var(--warning-yellow); color: var(--dark-grey); }
+
+
+/* --- Main Content & Cards --- */
+.container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+.main-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.btn-primary { background-color: var(--primary-blue); color: white; border: none; padding: 10px 18px; border-radius: 5px; font-weight: 500; transition: background-color 0.3s; }
+.btn-primary:hover { background-color: var(--secondary-blue); }
+.btn-danger { background-color: var(--danger-red); }
+
+/* --- Document Card Layout --- */
+.document-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.doc-card { background: var(--surface-dark); border: 1px solid var(--border-color); /* ... rest of styles are same */ border-radius: 8px; display: flex; align-items: center; padding: 1rem; cursor: pointer; transition: box-shadow 0.3s, transform 0.3s; position: relative; overflow: hidden; }
+.doc-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
+/* ... other doc-card styles from before remain the same ... */
+.doc-card-icon { padding-right: 1rem; color: var(--primary-blue); }
+.doc-card-icon svg { width: 40px; height: 40px; fill: currentColor; }
+.doc-card-body h4 { margin: 0 0 0.25rem 0; color: var(--primary-text); }
+.doc-card-body p { margin: 0; color: var(--secondary-text); font-size: 0.9rem; }
+.doc-card-status { position: absolute; top: 0; right: 0; background-color: var(--border-color); color: var(--primary-text); padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 700; border-bottom-left-radius: 8px; }
+.doc-card-status.pending-acknowledgment { background-color: var(--warning-yellow); color: var(--background-dark); }
+.doc-card-status.acknowledged { background-color: var(--success-green); color: white; }
+
+/* --- Admin Dashboard User Cards --- */
+.user-card {
+    background: var(--surface-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.user-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.user-card-header h3 { margin: 0; }
+.user-card-role { background: var(--primary-blue); color: white; padding: 0.2em 0.6em; border-radius: 10px; font-size: 0.8rem; }
+.user-card-role.admin { background-color: var(--success-green); }
+.user-card p { margin: 0; color: var(--secondary-text); }
+.user-card-actions { margin-top: 1rem; display: flex; gap: 0.5rem; }
+.user-card-actions button, .user-card-actions .btn-danger { padding: 8px 12px; font-size: 0.9rem; }
+
+/* --- Login & Forms --- */
+.login-page-container { display: flex; justify-content: center; align-items: center; padding-top: 5rem; }
+.login-card { background: var(--surface-dark); padding: 2.5rem; border-radius: 12px; text-align: center; max-width: 400px; width: 100%; border: 1px solid var(--border-color); }
+.form-container, .login-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-group { text-align: left; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #333;
+    color: var(--primary-text);
+}
+
+/* --- Modals --- */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+.modal-content { background-color: var(--surface-dark); margin: 10% auto; padding: 2rem; border-radius: 8px; width: 90%; max-width: 500px; position: relative; border: 1px solid var(--border-color); }
+.modal.large .modal-content { max-width: 90vw; }
+.close-btn { color: #aaa; position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; font-weight: bold; cursor: pointer; }
+
+/* --- Other styles from before... (acknowledgment section etc.) */
+/* --- Footer --- */
+.main-footer { background-color: var(--surface-dark); border-top: 1px solid var(--border-color); color: var(--secondary-text); text-align: center; padding: 1.5rem; margin-top: 2rem; }
+.main-footer a { color: var(--primary-blue); }

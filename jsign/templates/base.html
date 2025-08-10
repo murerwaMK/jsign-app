@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}JSign{% endblock %} - Fenway Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3ZM16 14.17C16.83 13.34 17.5 12.23 17.5 11C17.5 8.79 15.71 7 13.5 7C11.53 7 10.05 8.35 9.5 10H12.5V12H9.5V13.5H12.5V15.5H9.5V16.5H14.83C15.33 15.67 15.67 14.83 16 14.17ZM19 19H5V5H16.17L19 7.83V19Z" fill="#FFFFFF"/>
+            </svg>
+            <h1><a href="{{ url_for('views.index') }}">JSign</a></h1>
+        </div>
+        <div class="nav-links">
+            {% if current_user.is_authenticated %}
+                {% if current_user.role == 'admin' %}
+                    <a href="{{ url_for('admin.dashboard') }}">Admin Panel</a>
+                {% endif %}
+                <button id="my-signature-btn" class="nav-button">My Signature</button>
+                <span class="user-info">Welcome, {{ current_user.username }}</span>
+                <a href="{{ url_for('auth.logout') }}" class="nav-button logout">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="main-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <p>Designed and Owned by Fenway Technologies Kenya</p>
+        <p>Contact: <a href="mailto:kelvinmurerwa@protonmail.com">kelvinmurerwa@protonmail.com</a> | Phone: +254715523868</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.5.1/mammoth.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

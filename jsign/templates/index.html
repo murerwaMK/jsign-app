@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="main-header">
+        <h1>Document Dashboard</h1>
+        <button id="upload-modal-btn" class="btn-primary">Upload New Document</button>
+    </header>
+
+    <div id="pending-acknowledgments" class="pending-section">
+        <h2>Pending Your Acknowledgment</h2>
+        <div id="pending-list" class="document-grid">
+            </div>
+    </div>
+
+    <div class="table-container">
+        <h2>All Documents</h2>
+        <div id="document-grid" class="document-grid">
+            </div>
+    </div>
+</div>
+
+<div id="upload-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Upload Document</h2>
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="file-input">Select File (PDF, DOCX, XLSX)</label>
+                <input type="file" id="file-input" name="file" required>
+            </div>
+            <div class="form-group">
+                <label for="special-requirements">Special Requirements (Optional)</label>
+                <textarea id="special-requirements" name="special_requirements" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Upload</button>
+        </form>
+    </div>
+</div>
+
+<div id="document-preview-modal" class="modal large">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="preview-title">Document Preview</h2>
+        <div id="preview-area">
+            <div id="document-render-area"></div>
+        </div>
+        <div class="acknowledgment-section">
+            <h3>Special Requirements</h3>
+            <p id="special-requirements-text"></p>
+            <div class="ack-box">
+                <input type="checkbox" id="ack-checkbox">
+                <label for="ack-checkbox">I acknowledge I have seen the special requirements for the Banqueting Event Order.</label>
+            </div>
+            <button id="confirm-ack-btn" class="btn-primary" disabled>Confirm and Acknowledge</button>
+        </div>
+        <div class="status-section">
+            <h3>Acknowledgment Status</h3>
+            <div id="ack-status-lists">
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
